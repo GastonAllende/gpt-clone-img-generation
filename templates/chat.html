@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script> 
+    <title>ChatGPT Clone</title>
+</head>
+<body>
+    <div class="container">
+        <h1>ChatGPT Clone</h1>
+        <form action="/send_message" method="POST" onsubmit="showLoading()">
+            <input type="text" name="message" placeholder="Type your message..." required>
+            <button type="submit">Send</button>
+        </form>
+        <div class="conversation">
+            {% for message in conversation %}
+                <div class="message">
+                    <strong>{{ message.role.capitalize() }}:</strong> {{ message.content }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="nav-links">
+            <a href="/image_gen" class="nav-button">Go to Image Generation</a>
+            <form action="/reset_chat" method="POST" style="display:inline;">
+                <button type="submit" class="nav-button">Reset Chat</button>
+            </form>
+        </div>
+    </div>
+       <!-- Loading Indicator -->
+       <div id="loading">Loading...</div>
+</body>
+</html>

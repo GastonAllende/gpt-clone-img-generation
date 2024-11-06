@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script> 
+    <title>Image Generation</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Generation</h1>
+        <form action="/generate_image" method="POST" onsubmit="showLoading()">
+            <input type="text" name="prompt" placeholder="Enter image prompt..." required>
+            <button type="submit">Generate Image</button>
+        </form>
+        {% if image_url %}
+            <div class="image-container">
+                <h2>Generated Image:</h2>
+                <img src="{{ image_url }}" alt="Generated Image">
+            </div>
+        {% endif %}
+        <div class="nav-links">
+            <a href="/" class="nav-button">Go to Chat</a>
+        </div>
+    </div>
+    <!-- Loading Indicator -->
+    <div id="loading">Loading...</div>
+</body>
+</html>
